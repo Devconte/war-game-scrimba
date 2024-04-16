@@ -20,3 +20,11 @@ document.getElementById("new-deck").addEventListener("click", handleClick)
  * (that will replace the base url of https://deckofcardsapi.com/api/deck/)
  * that you'll see in the deck of cards API docs.
  */
+
+document.getElementById('draw-cards').addEventListener('click', () => {
+    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    })
+});
