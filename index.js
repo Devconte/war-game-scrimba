@@ -37,6 +37,12 @@ drawCardBtn.addEventListener('click', () => {
     fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
     .then(res => res.json())
     .then(data => {
+        if(!deckId){
+            drawCardBtn.setAttribute("disabled", true);
+            remainingText.textContent = "No deck created. Please create a deck first";
+            return;
+        }
+
         remainingText.textContent = `Remaining cards: ${data.remaining} cards left`;
         cardsContainer.children[0].innerHTML = `
         <img src=${data.cards[0].image} class="card" />
