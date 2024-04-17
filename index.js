@@ -20,9 +20,14 @@ newDeckBtn.addEventListener("click", handleClick);
 
 function handleWin(card1, card2){
     if(card1.value > card2.value){
+        computerScore++;
+        document.getElementById("computer-score").textContent = `Computer Score : ${computerScore}`;
         return "Computer wins";
     } else if(card1.value < card2.value){
+        playerScore++;
+        document.getElementById("player-score").textContent = `Player Score : ${playerScore}`;
         return "Player wins";
+        
     } else {
         return "It's a tie";
     }
@@ -42,7 +47,7 @@ drawCardBtn.addEventListener('click', () => {
         if(data.remaining === 0){
             handleNoCardsLeft();
         }
-        handleScore()
+    
     });
 });
 
@@ -53,12 +58,3 @@ function handleNoCardsLeft(){
     remainingText.textContent = "No cards left in the deck";
 }
 
-function handleScore(){
-    if(winnerText.textContent === "Computer wins"){
-        computerScore++;
-    } else if(winnerText.textContent === "Player wins"){
-        playerScore++;
-    }
-    document.getElementById("player-score").textContent = `Player Score : ${playerScore}`;
-    document.getElementById("computer-score").textContent = `Computer Score : ${computerScore}`;
-}
