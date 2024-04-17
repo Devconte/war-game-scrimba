@@ -10,13 +10,7 @@ body {
     background-image: url('./img/table.png');
     background-size: cover;
     color: white;
-
-}
-
-.draw-cards {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    text-align: center;
 
 }
 
@@ -35,16 +29,25 @@ button#new-deck {
 }
 
 button {
-    margin: 10px;
     padding: 10px 20px;
     border: none;
     background-color: orange;
     border-radius: 10px;
 }
 
+.container {
+    height: 300px;
+}
+
 img.card {
     width: 100%;
 
+}
+
+.draw-cards {
+    width: 30%;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -58,5 +61,6 @@ h1 {
 
 .remaining {
     font-size: 18px;
+    margin: 4px 10px;
 }
 
