@@ -45,6 +45,7 @@ drawCardBtn.addEventListener('click', () => {
         <img src=${data.cards[1].image} class="card" />`;
         winnerText.textContent = handleWin(data.cards[0], data.cards[1]);
         if(data.remaining === 0){
+            handleWinner();
             handleNoCardsLeft();
         }
     
@@ -58,3 +59,12 @@ function handleNoCardsLeft(){
     remainingText.textContent = "No cards left in the deck";
 }
 
+function handleWinner(){
+    if(playerScore > computerScore){
+        winnerText.textContent = "Player wins the game";
+    } else if(playerScore < computerScore){
+        winnerText.textContent = "Computer wins the game";
+    } else {
+        winnerText.textContent = "It's a tie";
+    }
+}
