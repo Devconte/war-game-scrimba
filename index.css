@@ -2,3 +2,61 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('./img/table.png');
+    background-size: cover;
+    color: white;
+
+}
+
+.draw-cards {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}
+
+.card-slot {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 120px;
+    width: calc(120px *  5 / 7 );
+    margin : 0 auto;
+    margin-bottom: 50px;
+}
+
+button#new-deck {
+    align-self: flex-start;
+    padding: 5px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: orange;
+    border-radius: 10px;
+}
+
+img.card {
+    width: 100%;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+.top {
+    display: flex;
+    padding: 10px;
+}
+
+.remaining {
+    font-size: 18px;
+}
+

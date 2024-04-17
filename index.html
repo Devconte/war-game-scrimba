@@ -3,8 +3,19 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <button id="new-deck">New Deck, Please!</button>
-        <button id="draw-cards">Draw 2 cards</button>
+        <div class="top">
+            <button id="new-deck">New Deck, Please!</button>
+            <p id="remaining-cards" class="remaining"></p>
+        </div>
+        <h1 id="winner-text"></h1>
+        
+        
+        <div id="cards-container">
+            <div class="card-slot"></div>
+            <div class="card-slot"></div>
+        </div>
+        
+        <button id="draw-cards" class="draw-cards">Draw 2 cards</button>
         <script src="index.js"></script>
     </body>
 </html>
