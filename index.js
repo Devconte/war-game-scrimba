@@ -4,6 +4,8 @@ const drawCardBtn = document.getElementById("draw-cards");
 const cardsContainer = document.getElementById("cards-container");
 const winnerText = document.getElementById("winner-text");
 const remainingText = document.getElementById("remaining-cards");
+let playerScore = 0;
+let computerScore = 0;
 
 function handleClick() {
     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -40,6 +42,7 @@ drawCardBtn.addEventListener('click', () => {
         if(data.remaining === 0){
             handleNoCardsLeft();
         }
+        handleScore()
     });
 });
 
@@ -48,4 +51,14 @@ function handleNoCardsLeft(){
     drawCardBtn.setAttribute("style", "background-color: grey");
     drawCardBtn.setAttribute("style" , "cursor: not-allowed");
     remainingText.textContent = "No cards left in the deck";
+}
+
+function handleScore(){
+    if(winnerText.textContent === "Computer wins"){
+        computerScore++;
+    } else if(winnerText.textContent === "Player wins"){
+        playerScore++;
+    }
+    document.getElementById("player-score").textContent = `Player Score : ${playerScore}`;
+    document.getElementById("computer-score").textContent = `Computer Score : ${computerScore}`;
 }
