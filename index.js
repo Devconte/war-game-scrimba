@@ -7,13 +7,12 @@ const remainingText = document.getElementById("remaining-cards");
 let playerScore = 0;
 let computerScore = 0;
 
-function handleClick() {
-    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-        .then(res => res.json())
-        .then(data => {
-            deckId = data.deck_id;
-            remainingText.textContent = `Remaining cards: ${data.remaining}`;
-        });
+async function handleClick() {
+    const response = await fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/");
+    const data = await response.json();
+    deckId = data.deck_id;
+    remainingText.textContent = `Remaining cards: ${data.remaining}`;
+    drawCardBtn.removeAttribute("disabled");
 }
 
 newDeckBtn.addEventListener("click", handleClick);
@@ -33,29 +32,25 @@ function handleWin(card1, card2){
     }
 }
 
-drawCardBtn.addEventListener('click', () => {
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-    .then(res => res.json())
-    .then(data => {
-        if(!deckId){
-            drawCardBtn.setAttribute("disabled", true);
-            remainingText.textContent = "No deck created. Please create a deck first";
-            return;
-        }
+drawCardBtn.addEventListener('click', async () => {
+    const response = await fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`);
+    const data = await response.json();
+    if(!deckId){
+        drawCardBtn.setAttribute("disabled", true);
+        remainingText.textContent = "No deck created. Please create a deck first";
+    }
 
-        remainingText.textContent = `Remaining cards: ${data.remaining} cards left`;
-        cardsContainer.children[0].innerHTML = `
-        <img src=${data.cards[0].image} class="card" />
-        `;
-        cardsContainer.children[1].innerHTML = `
-        <img src=${data.cards[1].image} class="card" />`;
-        winnerText.textContent = handleWin(data.cards[0], data.cards[1]);
-        if(data.remaining === 0){
-            handleWinner();
-            handleNoCardsLeft();
-        }
-    
-    });
+    remainingText.textContent = `Remaining cards: ${data.remaining} cards left`;
+    cardsContainer.children[0].innerHTML = `
+    <img src=${data.cards[0].image} class="card" />
+    `;
+    cardsContainer.children[1].innerHTML = `
+    <img src=${data.cards[1].image} class="card" />`;
+    winnerText.textContent = handleWin(data.cards[0], data.cards[1]);
+    if(data.remaining === 0){
+        handleWinner();
+        handleNoCardsLeft();
+    }
 });
 
 function handleNoCardsLeft(){
